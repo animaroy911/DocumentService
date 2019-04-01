@@ -1,0 +1,49 @@
+﻿@page "{id:int?}"
+@model DocumentService.Pages.MemberServices.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>MemberService</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MemberService.Rate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MemberService.Rate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MemberService.Experience)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MemberService.Experience)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MemberService.Certificate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MemberService.Certificate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MemberService.HandyMember)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MemberService.HandyMember.ID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MemberService.JobType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MemberService.JobType.ID)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.MemberService.MemberServiceID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

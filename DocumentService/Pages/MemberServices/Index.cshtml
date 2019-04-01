@@ -1,0 +1,60 @@
+﻿@page
+@model DocumentService.Pages.MemberServices.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberService[0].Rate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberService[0].Experience)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberService[0].Certificate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberService[0].HandyMember)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MemberService[0].JobType)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.MemberService) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Experience)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Certificate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HandyMember.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobType.ID)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.MemberServiceID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.MemberServiceID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.MemberServiceID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
