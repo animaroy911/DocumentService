@@ -9,6 +9,9 @@ using DocumentService.Data;
 using DocumentService.Models;
 using HtmlAgilityPack;
 using System.IO;
+using System.Web;
+using System.Text.RegularExpressions;
+using System.Text;
 
 namespace DocumentService.Pages.Segments
 {
@@ -66,31 +69,48 @@ namespace DocumentService.Pages.Segments
                 await Segment.UploadDocumentFile.CopyToAsync(memoryStream);
                 document.Load(filePath);
 
+                
+
                 HtmlNode root = document.DocumentNode.SelectNodes("//div[@class='WordSection1']").FirstOrDefault();
-                string header = "";
-                List<string> lines = new List<string>();
+
+                foreach (var eachNode in root.SelectNodes("//*"))
+                    eachNode.Attributes.RemoveAll();
+
+                List<Segment> segments = new List<Segment>();
+                Segment currentSegment = null;
                 foreach (HtmlNode node in root.ChildNodes)
                 {
-                    if (node.OuterHtml.TrimStart().StartsWith("<div"))
+                    if (node.Name == "div")
                     {
-                        if (!string.IsNullOrWhiteSpace(header))
+                        if (currentSegment != null)
                         {
-                            Segment segment = new Segment();
-                            segment.Header = header;
-                            segment.Content = string.Join("", lines);
-                            _context.Segment.Add(segment);
-                            header = "";
-                            lines = new List<string>();
+                            segments.Add(currentSegment);
                         }
-                        header = node.InnerText;
+                        currentSegment = new Segment();
                     }
-                    else if (node.OuterHtml.TrimStart().StartsWith("<p"))
+                    if (node.Name == "div")
                     {
-                        lines.Add(node.InnerText);
+                        if (currentSegment != null && !string.IsNullOrWhiteSpace(HttpUtility.HtmlDecode(node.InnerText)))
+                        {
+                            currentSegment.Header = HttpUtility.HtmlDecode(node.InnerText);
+                        }
+                    }
+                    else if (node.Name == "p")
+                    {
+                        if (currentSegment != null && !string.IsNullOrWhiteSpace(HttpUtility.HtmlDecode(node.InnerText)))
+                        {
+                            currentSegment.Content += HttpUtility.HtmlDecode(node.OuterHtml);
+                        }
                     }
                 }
 
-                await _context.SaveChangesAsync();
+                foreach (Segment segment in segments)
+                {
+                    _context.Segment.Add(segment);
+                    await _context.SaveChangesAsync();
+                }
+
+                //await _context.SaveChangesAsync();
             }
             return RedirectToPage("./Index");
         }

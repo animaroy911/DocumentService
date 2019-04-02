@@ -9,10 +9,33 @@
 
 <p>
     <a asp-page="Create">Create New</a>
+    <form method="post">
+        <div class="form-group">
+            <input type="submit" value="Deleta All" class="btn btn-primary" />
+        </div>
+    </form>
 </p>
+
+@foreach (var item in Model.Segment)
+{
+    <div class="card" style="margin-bottom: 15px;">
+        <div class="card-header" style="font-weight:bold;">
+            @Html.Raw(item.Header)
+            <a asp-page="./Edit" asp-route-id="@item.Id" class="float-right">Edit</a>
+        </div>
+        <div class="card-body">
+            <p class="card-text">@Html.Raw(item.Content)</p>
+        </div>
+    </div>
+}
+
+
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Segment[0].Id)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Segment[0].Header)
             </th>
@@ -26,23 +49,29 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Segment) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Header)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Owner)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Segment)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Header)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Owner)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+

@@ -25,5 +25,18 @@ namespace DocumentService.Pages.Segments
         {
             Segment = await _context.Segment.ToListAsync();
         }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            _context.Segment.RemoveRange(_context.Segment);
+            await _context.SaveChangesAsync();
+
+            return RedirectToPage("./Index");
+        }
     }
 }
