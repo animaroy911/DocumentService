@@ -87,6 +87,7 @@ namespace DocumentService.Pages.Segments
                             segments.Add(currentSegment);
                         }
                         currentSegment = new Segment();
+                        currentSegment.Owner = Globals.CURRENT_USER;
                     }
                     if (node.Name == "div")
                     {

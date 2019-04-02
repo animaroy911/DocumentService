@@ -4,14 +4,16 @@ using DocumentService.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DocumentService.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190402072139_AddBook")]
+    partial class AddBook
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,11 +27,7 @@ namespace DocumentService.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name");
-
-                    b.Property<string>("Owner");
-
-                    b.Property<string>("SegmentIdsString");
+                    b.Property<string>("owner");
 
                     b.HasKey("Id");
 
@@ -127,6 +125,8 @@ namespace DocumentService.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("BookId");
+
                     b.Property<string>("Content");
 
                     b.Property<string>("Header");
@@ -134,6 +134,8 @@ namespace DocumentService.Data.Migrations
                     b.Property<string>("Owner");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BookId");
 
                     b.ToTable("Segment");
                 });
@@ -314,6 +316,13 @@ namespace DocumentService.Data.Migrations
                         .WithMany("MemberServices")
                         .HasForeignKey("JobTypeID")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("DocumentService.Models.Segment", b =>
+                {
+                    b.HasOne("DocumentService.Models.Book")
+                        .WithMany("Segments")
+                        .HasForeignKey("BookId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

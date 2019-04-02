@@ -20,7 +20,7 @@
 {
     <div class="card" style="margin-bottom: 15px;">
         <div class="card-header" style="font-weight:bold;">
-            @Html.Raw(item.Header)
+            @Html.Raw(item.Id + " " + item.Header)
             <a asp-page="./Edit" asp-route-id="@item.Id" class="float-right">Edit</a>
         </div>
         <div class="card-body">

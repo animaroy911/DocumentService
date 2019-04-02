@@ -17,5 +17,6 @@ namespace DocumentService.Data
         public DbSet<MemberService> MemberService { get; set; }
         public DbSet<JobType> JobType { get; set; }
         public DbSet<DocumentService.Models.Segment> Segment { get; set; }
+        public DbSet<DocumentService.Models.Book> Book { get; set; }
     }
 }
