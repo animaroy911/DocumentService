@@ -20,8 +20,8 @@
 <body>
     <header>
         <nav class="navbar navbar-expand navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Handy</a>
+            <div class="container">
+                <a class="navbar-brand" asp-area="">DOCUMENT SYSTEM</a>
                 <div class="navbar-collapse collapse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
@@ -33,9 +33,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-page="/Segments/Index">SEGMENTS</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/HandyMembers/Index">BOOKS</a>
-                        </li>
                     </ul>
                     <span class="navbar-text">
                         Hello, @Globals.CURRENT_USER
@@ -44,7 +41,7 @@
             </div>
         </nav>
     </header>
-    <div class="container-fluid" style="height:calc(100% - 56px);">
+    <div class="container" style="height:calc(100% - 56px);padding: 0px 0 0;">
         @RenderBody()
     </div>
 

@@ -20,14 +20,32 @@ namespace DocumentService.Pages.Books
         }
 
         public IList<Book> Book { get;set; }
-        public List<Segment> BookSegments { get; set; }
 
         public async Task OnGetAsync()
         {
             Book = await _context.Book.ToListAsync();
             foreach (Book book in Book)
             {
-                book.BookSegments = book.SegmentIdsString.Split(",").Where(item=>!string.IsNullOrWhiteSpace(item)).Select(segmentId => _context.Segment.FirstOrDefault(m => m.Id == int.Parse(segmentId))).ToList();
+                book.BookSegments = new List<Segment>();
+                foreach (string segmentIdString in book.SegmentIdsString.Split(","))
+                {
+                    int segmentId = 0;
+                    if (int.TryParse(segmentIdString, out segmentId))
+                    {
+                        if (_context.Segment.Any(m => m.Id == segmentId))
+                        {
+                            book.BookSegments.Add(_context.Segment.First(m => m.Id == segmentId));
+                        }
+                        else
+                        {
+                            book.BookSegments.Add(new Segment { Header = "This segment has been deleted." });
+                        }
+                    }
+                    else
+                    {
+                        book.BookSegments.Add(new Segment { Header = "This segment ID is invalid." });
+                    }
+                }
                 if(book.BookSegments.Count > 5)
                 {
                     book.BookSegments = book.BookSegments.Take(5).Append(new Segment { Header = "..." }).ToList();

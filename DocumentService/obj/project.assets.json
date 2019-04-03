@@ -12978,23 +12978,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\I830802\\.nuget\\packages\\": {},
+    "C:\\Users\\anima\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\I830802\\git\\DocumentService\\DocumentService\\DocumentService.csproj",
+      "projectUniqueName": "C:\\Users\\anima\\Documents\\GitHub\\DocumentService\\DocumentService\\DocumentService.csproj",
       "projectName": "DocumentService",
-      "projectPath": "C:\\Users\\I830802\\git\\DocumentService\\DocumentService\\DocumentService.csproj",
-      "packagesPath": "C:\\Users\\I830802\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\I830802\\git\\DocumentService\\DocumentService\\obj\\",
+      "projectPath": "C:\\Users\\anima\\Documents\\GitHub\\DocumentService\\DocumentService\\DocumentService.csproj",
+      "packagesPath": "C:\\Users\\anima\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\anima\\Documents\\GitHub\\DocumentService\\DocumentService\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\I830802\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\anima\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

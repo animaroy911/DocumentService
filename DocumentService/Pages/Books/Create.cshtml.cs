@@ -95,7 +95,6 @@ namespace DocumentService.Pages.Books
                             segments.Add(currentSegment);
                         }
                         currentSegment = new Segment();
-                        currentSegment.Owner = Globals.CURRENT_USER;
                     }
                     if (node.Name == "div")
                     {
@@ -115,6 +114,7 @@ namespace DocumentService.Pages.Books
 
                 foreach (Segment segment in segments)
                 {
+                    segment.Owner = Globals.CURRENT_USER;
                     _context.Segment.Add(segment);
                     await _context.SaveChangesAsync();
                 }
