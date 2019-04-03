@@ -34,6 +34,32 @@
     </div>
 </div>
 
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Book.Name" class="control-label"></label>
+                <input asp-for="Book.Name" class="form-control" />
+                <span asp-validation-for="Book.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Book.UploadDocumentFile" class="control-label"></label>
+                <input asp-for="Book.UploadDocumentFile" type="file" class="form-control" style="height:auto" />
+                <span asp-validation-for="Book.UploadDocumentFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Book.Owner" class="control-label"></label>
+                <input value="@Globals.CURRENT_USER" disabled class="form-control" />
+                <span asp-validation-for="Book.Owner" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" asp-page-handler="Document" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
 <div>
     <a asp-page="Index">Back to List</a>
 </div>

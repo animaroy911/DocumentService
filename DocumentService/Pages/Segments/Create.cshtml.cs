@@ -56,7 +56,7 @@ namespace DocumentService.Pages.Segments
             await _context.SaveChangesAsync();
             //return RedirectToPage("./Index");
 
-            var filePath = @"C:\Users\anima\Desktop\TEMP\xx";
+            var filePath = Path.GetTempFileName();
 
             using (var fileStream = new FileStream(filePath, FileMode.Create))
             {

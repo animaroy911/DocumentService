@@ -32,18 +32,6 @@
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
-
-        <form method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Segment.UploadDocumentFile" class="control-label"></label>
-                <input asp-for="Segment.UploadDocumentFile" type="file" class="form-control" style="height:auto" />
-                <span asp-validation-for="Segment.UploadDocumentFile" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" asp-page-handler="Second" class="btn btn-primary" />
-            </div>
-        </form>
     </div>
 </div>
 

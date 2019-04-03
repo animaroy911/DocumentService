@@ -1,26 +1,40 @@
 ﻿@page
 @model DocumentService.Pages.Books.DetailsModel
-
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>@Html.DisplayFor(model => model.Book.Name)</h1>
-
-@foreach (var item in Model.BookSegments)
-{
-    <div class="card" style="margin-bottom: 15px;">
+<div class="row" style="height:100%;">
+    <div class="card" style="border-radius:0px;height: 100%;">
         <div class="card-header" style="font-weight:bold;">
-            @Html.Raw(item.Id + " " + item.Header)
-            <a asp-page="../Segments/Edit" asp-route-id="@item.Id" class="float-right">Edit</a>
+            @Model.Book.Name
         </div>
-        <div class="card-body">
-            <p class="card-text">@Html.Raw(item.Content)</p>
+        <div class="card-body" style="padding:0;width:400px;height: 100%;overflow-y: scroll;">
+            <div class=" list-group list-group-flush">
+                @foreach (var item in Model.BookSegments)
+                {
+                    <a href="@Html.Raw("#book_segment_" + item.Id)" class="list-group-item list-group-item-action">@Html.Raw(item.Header)</a>
+                }
+            </div>
         </div>
     </div>
-}
-
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Book.Id">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <div style="width: calc(100% - 402px);height: 100%;overflow-y: scroll;padding:10px;">
+        @foreach (var item in Model.BookSegments)
+        {
+            <div class="card" style="margin-bottom: 15px;">
+                <div id="@Html.Raw("book_segment_" + item.Id)" class="card-header" style="font-weight:bold;">
+                    @Html.Raw(item.Id + " " + item.Header)
+                    <a asp-page="../Segments/Edit" asp-route-id="@item.Id" class="float-right">Edit</a>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">@Html.Raw(item.Content)</p>
+                </div>
+            </div>
+        }
+        <div>
+            <a asp-page="./Edit" asp-route-id="@Model.Book.Id">Edit</a> |
+            <a asp-page="./Index">Back to List</a>
+        </div>
+    </div>
 </div>
+
