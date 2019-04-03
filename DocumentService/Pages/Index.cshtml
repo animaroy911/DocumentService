@@ -4,35 +4,21 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="jumbotron">
-    <h1>The Professional Service Makes Your Life Better</h1>
-</div>
-<div class="row">
-    <div class="col-md-4">
-        <h2>Welcome to Document Service</h2>
-        <p>
-            Handy is a sample application that
-            connects those who need handy service with the skilled masters.
-        </p>
+<h1>You are now logged in as @Globals.CURRENT_USER</h1>
+
+<form method="post">
+    <div class="row">
+        <div class="form-group">
+            <input type="submit" value="Crothall" asp-page-handler="Crothall" class="btn btn-primary" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Hospital A" asp-page-handler="HospitalA" class="btn btn-primary" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Hospital B" asp-page-handler="HospitalB" class="btn btn-primary" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Hospital C" asp-page-handler="HospitalC" class="btn btn-primary" />
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Connect</h2>
-        <p>Find and connect with the reliable tasker closest to you</p>
-        <p>
-            <a class="btn btn-default"
-               href="https://docs.microsoft.com/aspnet/core/data/ef-rp/intro">
-                See the tutorial &raquo;
-            </a>
-        </p>
-    </div>
-    <div class="col-md-4">
-        <h2>Join the community</h2>
-        <p>Be one of our reliable taskforce.</p>
-        <p>
-            <a class="btn btn-default"
-               href="https://github.com/aspnet/Docs/tree/master/aspnetcore/data/ef-rp/intro/samples/cu-final">
-                Register now &raquo;
-            </a>
-        </p>
-    </div>
-</div>
+</form>

@@ -4,34 +4,69 @@
     ViewData["Title"] = "Index";
 }
 
-<div class="row" style="padding: 15px 7px;">
+<h5 style="margin: 15px 0 0 10px;">My Books</h5>
+<hr />
+
+<div class="row" style="padding: 0 30px;">
     @foreach (var item in Model.Book)
     {
-        <div class="card" style="margin: 0 7px 15px 7px;width:350px;height:500px;">
-            <div class="card-header" style="height:49px;">@Html.DisplayFor(modelItem => item.Name)</div>
-            <div class="card-body">
-                <p class="card-text">
-                    Contents Preview
-                    <ul>
-                        @Html.Raw(string.Join("", item.BookSegments.Select(x => "<li>" + x.Header + "</li>")))
-                    </ul>
-                </p>
-
-            </div>
-            <div class="card-footer" style="height:63px;">
-                <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-primary">View</a>
-                <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
-                <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-primary">Delete</a>
+        <div class="col-lg-4 col-md-6 col-xl-3" style="padding: 0 7px 15px;">
+            <div class="card" style="height:400px;">
+                <div class="card-header" style="height:49px;font-weight:bold">@Html.DisplayFor(modelItem => item.Name)</div>
+                <div class="card-body">
+                    <p class="card-text">
+                        Contents Preview
+                        <ul>
+                            @Html.Raw(string.Join("", item.BookSegments.Select(x => "<li>" + x.Header + "</li>")))
+                        </ul>
+                    </p>
+                </div>
+                <div class="card-footer" style="height:63px;">
+                    <div class="float-right">
+                        <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary" style="width:60px;">View</a>
+                        <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary" style="width:60px;">Edit</a>
+                        <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" style="width:60px;">Delete</a>
+                    </div>
+                </div>
             </div>
         </div>
     }
-    <div class="card" style="margin: 0 7px 15px 7px;width:350px;height:500px;">
-        <div class="card-header" style="height:49px;"></div>
-        <div class="card-body">
-            <a asp-page="Create" class="btn btn-primary">Add New Book</a>
-        </div>
-        <div class="card-footer" style="height:63px;">
+    <div class="col-lg-4 col-md-6 col-xl-3" style="padding: 0 7px 15px;">
+        <div class="card" style="height:400px;">
+            <div class="card-header" style="height:49px;"></div>
+            <div class="card-body" style="text-align:center;padding-top:80px;">
+                <a asp-page="Create" class="btn btn-lg btn-success">Add New Book</a>
+            </div>
+            <div class="card-footer" style="height:63px;">
 
+            </div>
         </div>
     </div>
+</div>
+
+<h5 style="margin: 15px 0 0 10px;">Other's Books</h5>
+<hr />
+
+<div class="row" style="padding: 0 30px;">
+    @foreach (var item in Model.Book)
+    {
+        <div class="col-lg-4 col-md-6 col-xl-3" style="padding: 0 7px 15px;">
+            <div class="card" style="height:400px;">
+                <div class="card-header" style="height:49px;font-weight:bold">@Html.DisplayFor(modelItem => item.Name)</div>
+                <div class="card-body">
+                    <p class="card-text">
+                        Contents Preview
+                        <ul>
+                            @Html.Raw(string.Join("", item.BookSegments.Select(x => "<li>" + x.Header + "</li>")))
+                        </ul>
+                    </p>
+                </div>
+                <div class="card-footer" style="height:63px;">
+                    <div class="float-right">
+                        <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary" style="width:60px;">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
