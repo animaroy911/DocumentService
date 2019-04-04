@@ -27,6 +27,7 @@ namespace DocumentService.Pages.Books
             foreach (Book book in Book)
             {
                 book.BookSegments = new List<Segment>();
+                book.SegmentIdsString = book.SegmentIdsString ?? "";
                 foreach (string segmentIdString in book.SegmentIdsString.Split(","))
                 {
                     int segmentId = 0;

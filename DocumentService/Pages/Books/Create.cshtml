@@ -10,7 +10,7 @@
 <h4>Book</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-12">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -18,10 +18,14 @@
                 <input asp-for="Book.Name" class="form-control" />
                 <span asp-validation-for="Book.Name" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Book.SegmentIdsString" class="control-label"></label>
-                <select asp-for="SelectedSegmentOptionIds" asp-items="Model.SegmentOptions"></select>
-            </div>
+            <ul class=" list-group">
+                @for (int i = 0; i < Model.SegmentOptions.Count; i++)
+                {
+                    <li class="list-group-item" style="padding:0px;"><label style="margin:0;padding:10px 20px;width:100%;"><input asp-for="@Model.SegmentOptions[i].Checked" type="checkbox" />@Model.SegmentOptions[i].Header</label><input type="hidden" asp-for="@Model.SegmentOptions[i].Id" /></li>
+                }
+            </ul>
+
+
             <div class="form-group">
                 <label asp-for="Book.Owner" class="control-label"></label>
                 <input value="@Globals.CURRENT_USER" disabled class="form-control" />

@@ -22,19 +22,17 @@ namespace DocumentService.Pages.Books
             _context = context;
         }
 
-        public SelectList SegmentOptions { get; set; }
+        [BindProperty]
+        public List<Segment> SegmentOptions { get; set; }
 
         public IActionResult OnGet()
         {
-            SegmentOptions = new SelectList(_context.Segment, nameof(Segment.Id), nameof(Segment.Header));
+            SegmentOptions = _context.Segment.ToList();
             return Page();
         }
 
         [BindProperty]
         public Book Book { get; set; }
-
-        [BindProperty]
-        public List<int> SelectedSegmentOptionIds { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -43,7 +41,7 @@ namespace DocumentService.Pages.Books
                 return Page();
             }
 
-            Book.SegmentIdsString = string.Join(",", SelectedSegmentOptionIds);
+            Book.SegmentIdsString = string.Join(",", SegmentOptions.Where(item=>item.Checked).Select(item=>item.Id));
             Book.Owner = Globals.CURRENT_USER;
             _context.Book.Add(Book);
             await _context.SaveChangesAsync();
