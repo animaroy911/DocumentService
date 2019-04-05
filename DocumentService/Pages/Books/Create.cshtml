@@ -5,67 +5,42 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>Book</h4>
-<hr />
-<div class="row">
-    <div class="col-12">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Book.Name" class="control-label"></label>
-                <input asp-for="Book.Name" class="form-control" />
-                <span asp-validation-for="Book.Name" class="text-danger"></span>
-            </div>
-            <ul class=" list-group">
-                @for (int i = 0; i < Model.SegmentOptions.Count; i++)
-                {
-                    <li class="list-group-item" style="padding:0px;"><label style="margin:0;padding:10px 20px;width:100%;"><input asp-for="@Model.SegmentOptions[i].Checked" type="checkbox" />@Model.SegmentOptions[i].Header</label><input type="hidden" asp-for="@Model.SegmentOptions[i].Id" /></li>
-                }
-            </ul>
-
-
-            <div class="form-group">
-                <label asp-for="Book.Owner" class="control-label"></label>
-                <input value="@Globals.CURRENT_USER" disabled class="form-control" />
-                <span asp-validation-for="Book.Owner" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <form method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Book.Name" class="control-label"></label>
-                <input asp-for="Book.Name" class="form-control" />
-                <span asp-validation-for="Book.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Book.UploadDocumentFile" class="control-label"></label>
-                <input asp-for="Book.UploadDocumentFile" type="file" class="form-control" style="height:auto" />
-                <span asp-validation-for="Book.UploadDocumentFile" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Book.Owner" class="control-label"></label>
-                <input value="@Globals.CURRENT_USER" disabled class="form-control" />
-                <span asp-validation-for="Book.Owner" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" asp-page-handler="Document" class="btn btn-primary" />
+<div class="row" style="height:100%;">
+    <div class="col-12" style="height:100%;">
+        <form method="post" style="height:100%;">
+            <div class="card" style="height:100%;border-radius:0px;">
+                <div class="card-header" style="height:49px;"><b>123</b></div>
+                <div class="card-body" style="height:100%;">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Book.Name" class="control-label"></label>
+                        <input asp-for="Book.Name" class="form-control" />
+                        <span asp-validation-for="Book.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="height: calc(100% - 300px);">
+                        <label class="control-label">Segment Options</label>
+                        <input filter-for="segment-options" placeholder="Filter" class="form-control" style="margin-bottom:15px;" />
+                        <ul id="segment-options" class=" list-group" style="height: calc(100% - 90px);overflow-y: scroll;border: 1px solid #ddd;">
+                            @for (int i = 0; i < Model.SegmentOptions.Count; i++)
+                            {
+                                <li class="list-group-item" style="padding:0px;border-width:1px 0; border-radius:0px;"><label style="margin:0;padding:10px 20px;width:100%;"><input asp-for="@Model.SegmentOptions[i].Checked" type="checkbox" />@Model.SegmentOptions[i].Header</label><input type="hidden" asp-for="@Model.SegmentOptions[i].Id" /></li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Book.Owner" class="control-label"></label>
+                        <input value="@Globals.CURRENT_USER" disabled class="form-control" />
+                        <span asp-validation-for="Book.Owner" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="card-footer" style="height:63px;">
+                    <div class="float-right">
+                        <input type="submit" value="Create" class="btn btn-primary btn-sm" />
+                    </div>
+                </div>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
 </div>
 
 @section Scripts {

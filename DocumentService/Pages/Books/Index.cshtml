@@ -14,15 +14,19 @@
                 <a class="nav-link" data-toggle="tab" href="#others-book" role="tab" aria-controls="profile" aria-selected="false" style="border-radius:0px; padding:10px 20px; font-weight:bold;">OTHER'S BOOK</a>
             </li>
         </ul>
+        <div class="float-right" style="margin: -26px -12px -10px 0;">
+            <a asp-page="Create" class="btn btn-success btn-sm">Add New Book by Selection</a>
+            <a asp-page="CreateByUpload" class="btn btn-success btn-sm">Add New Book by Upload</a>
+        </div>
     </div>
     <div class="card-body" style="overflow-y:scroll;">
         <div class="tab-content">
             <div class="tab-pane fade show active" id="my-books" role="tabpanel">
-                <a asp-page="Create" class="btn btn-block btn-success" style="margin-bottom:30px;">Add New Book</a>
-                <div class="row" >
+
+                <div class="row">
                     @foreach (var item in Model.Book.Where(s => s.Owner == Globals.CURRENT_USER))
                     {
-                        <div class="col-6" >
+                        <div class="col-6">
                             <div class="card" style="height:400px;margin-bottom:30px;">
                                 <div class="card-header" style="height:49px;"><b>@item.Name</b><span class="float-right">@item.Owner</span></div>
                                 <div class="card-body">
@@ -37,7 +41,10 @@
                                     <div class="float-right">
                                         <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary" style="width:60px;">View</a>
                                         <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary" style="width:60px;">Edit</a>
-                                        <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" style="width:60px;">Delete</a>
+                                        <form method="post" style="display:inline-block;">
+                                            <input type="hidden" asp-for="@Model.idToDelete" value="@item.Id" />
+                                            <input type="submit" value="Delete" class="btn btn-sm btn-danger" />
+                                        </form>
                                     </div>
                                 </div>
                             </div>

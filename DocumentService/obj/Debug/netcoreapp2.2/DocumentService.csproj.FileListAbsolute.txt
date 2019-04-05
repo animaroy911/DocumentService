@@ -172,7 +172,6 @@ C:\Users\I830802\git\DocumentService\DocumentService\obj\Debug\netcoreapp2.2\Doc
 C:\Users\I830802\git\DocumentService\DocumentService\obj\Debug\netcoreapp2.2\DocumentService.RazorCoreGenerate.cache
 C:\Users\I830802\git\DocumentService\DocumentService\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Pages\_ViewStart.g.cshtml.cs
 C:\Users\I830802\git\DocumentService\DocumentService\obj\Debug\netcoreapp2.2\Razor\Pages\Books\Create.g.cshtml.cs
-C:\Users\I830802\git\DocumentService\DocumentService\obj\Debug\netcoreapp2.2\Razor\Pages\Books\Delete.g.cshtml.cs
 C:\Users\I830802\git\DocumentService\DocumentService\obj\Debug\netcoreapp2.2\Razor\Pages\Books\Details.g.cshtml.cs
 C:\Users\I830802\git\DocumentService\DocumentService\obj\Debug\netcoreapp2.2\Razor\Pages\Books\Edit.g.cshtml.cs
 C:\Users\I830802\git\DocumentService\DocumentService\obj\Debug\netcoreapp2.2\Razor\Pages\Books\Index.g.cshtml.cs
@@ -211,3 +210,4 @@ C:\Users\I830802\git\DocumentService\DocumentService\obj\Debug\netcoreapp2.2\Doc
 C:\Users\I830802\git\DocumentService\DocumentService\obj\Debug\netcoreapp2.2\DocumentService.dll
 C:\Users\I830802\git\DocumentService\DocumentService\obj\Debug\netcoreapp2.2\DocumentService.pdb
 C:\Users\I830802\git\DocumentService\DocumentService\obj\Debug\netcoreapp2.2\DocumentService.csproj.CopyComplete
+C:\Users\I830802\git\DocumentService\DocumentService\obj\Debug\netcoreapp2.2\Razor\Pages\Books\CreateByUpload.g.cshtml.cs

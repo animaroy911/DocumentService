@@ -1,0 +1,36 @@
+﻿@page
+@model DocumentService.Pages.Books.CreateByUploadModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-12">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Book.Name" class="control-label"></label>
+                <input asp-for="Book.Name" class="form-control" />
+                <span asp-validation-for="Book.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Book.UploadDocumentFile" class="control-label"></label>
+                <input asp-for="Book.UploadDocumentFile" type="file" class="form-control" style="height:auto" />
+                <span asp-validation-for="Book.UploadDocumentFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Book.Owner" class="control-label"></label>
+                <input value="@Globals.CURRENT_USER" disabled class="form-control" />
+                <span asp-validation-for="Book.Owner" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -53,5 +53,19 @@ namespace DocumentService.Pages.Books
                 }
             }
         }
+
+        [BindProperty]
+        public int idToDelete { get; set; }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            Book book = await _context.Book.FindAsync(idToDelete);
+            if (book != null)
+            {
+                _context.Book.Remove(book);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToPage("./Index");
+        }
     }
 }
