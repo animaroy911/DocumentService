@@ -39,6 +39,7 @@ namespace DocumentService.Pages.Segments
                 return Page();
             }
 
+            Segment.Owner = Globals.CURRENT_USER;
             _context.Segment.Add(Segment);
             await _context.SaveChangesAsync();
 

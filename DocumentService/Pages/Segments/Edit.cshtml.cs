@@ -46,6 +46,7 @@ namespace DocumentService.Pages.Segments
                 return Page();
             }
 
+            Segment.Owner = Globals.CURRENT_USER;
             _context.Attach(Segment).State = EntityState.Modified;
 
             try
