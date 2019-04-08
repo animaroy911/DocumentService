@@ -24,7 +24,7 @@
             <div class="card" style="margin-bottom: 15px;">
                 <div id="@Html.Raw("book_segment_" + item.Id)" class="card-header" style="font-weight:bold;">
                     @Html.Raw(item.Id + " " + item.Header)
-                    <a asp-page="../Segments/Edit" asp-route-id="@item.Id" class="float-right">Edit</a>
+                    <a asp-page="../Segments/Edit" asp-route-id="@item.Id" asp-route-bookid="@Model.Book.Id" class="float-right">Edit</a>
                 </div>
                 <div class="card-body">
                     <p class="card-text">@Html.Raw(item.Content)</p>

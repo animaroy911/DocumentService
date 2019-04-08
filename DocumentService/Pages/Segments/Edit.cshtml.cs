@@ -23,19 +23,18 @@ namespace DocumentService.Pages.Segments
         [BindProperty]
         public Segment Segment { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? id, int? bookId)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
             Segment = await _context.Segment.FirstOrDefaultAsync(m => m.Id == id);
-
             if (Segment == null)
             {
                 return NotFound();
             }
+            Globals.FROM_BOOK_ID = bookId;
             return Page();
         }
 
@@ -65,7 +64,14 @@ namespace DocumentService.Pages.Segments
                 }
             }
 
-            return RedirectToPage("./Index");
+            if(Globals.FROM_BOOK_ID == null)
+            {
+                return RedirectToPage("./Index");
+            }
+            else
+            {
+                return Redirect("../Books/Details?id=" + Globals.FROM_BOOK_ID);
+            }
         }
 
         private bool SegmentExists(int id)
