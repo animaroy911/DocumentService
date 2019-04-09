@@ -28,6 +28,11 @@ namespace DocumentService.Pages.Books
         public IActionResult OnGet()
         {
             SegmentOptions = _context.Segment.ToList();
+            for (int i = 0; i <= SegmentOptions.Count - 1; i++)
+            {
+                SegmentOptions[i].Order = i;
+                SegmentOptions[i].Checked = false;
+            }
             return Page();
         }
 
@@ -40,7 +45,7 @@ namespace DocumentService.Pages.Books
             {
                 return Page();
             }
-            Book.SegmentIdsString = string.Join(",", SegmentOptions.Where(item=>item.Checked).Select(item=>item.Id));
+            Book.SegmentIdsString = string.Join(",", SegmentOptions.OrderBy(item => item.Order).Where(item => item.Checked).Select(item => item.Id));
             Book.Owner = Globals.CURRENT_USER;
             _context.Book.Add(Book);
             await _context.SaveChangesAsync();

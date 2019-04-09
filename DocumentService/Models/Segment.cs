@@ -13,5 +13,7 @@ namespace DocumentService.Models
 
         [NotMapped]
         public bool Checked { get; set; }
+        [NotMapped]
+        public int Order { get; set; }
     }
 }
