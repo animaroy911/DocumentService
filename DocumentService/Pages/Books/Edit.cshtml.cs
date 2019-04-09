@@ -20,13 +20,11 @@ namespace DocumentService.Pages.Books
             _context = context;
         }
 
-        public SelectList SegmentOptions { get; set; }
-
         [BindProperty]
         public Book Book { get; set; }
 
         [BindProperty]
-        public List<int> SelectedSegmentOptionIds { get; set; }
+        public List<Segment> SegmentOptions { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -34,10 +32,23 @@ namespace DocumentService.Pages.Books
             {
                 return NotFound();
             }
-
-            SegmentOptions = new SelectList(_context.Segment, nameof(Segment.Id), nameof(Segment.Header));
             Book = await _context.Book.FirstOrDefaultAsync(m => m.Id == id);
-
+            SegmentOptions = _context.Segment.ToList();
+            List<string> segmentIdsList = Book.SegmentIdsString.Split(",").ToList();
+            for (int i = 0; i <= SegmentOptions.Count - 1; i++)
+            {
+                int index = segmentIdsList.IndexOf(SegmentOptions[i].Id.ToString());
+                if(index > -1)
+                {
+                    SegmentOptions[i].Order = index;
+                    SegmentOptions[i].Checked = true;
+                }
+                else
+                {
+                    SegmentOptions[i].Order = segmentIdsList.Count + i;
+                }
+            }
+            SegmentOptions = SegmentOptions.OrderBy(item => item.Order).ToList();
             if (Book == null)
             {
                 return NotFound();
@@ -51,8 +62,8 @@ namespace DocumentService.Pages.Books
             {
                 return Page();
             }
-
-            Book.SegmentIdsString = string.Join(",", SelectedSegmentOptionIds);
+            Book.Owner = Globals.CURRENT_USER;
+            Book.SegmentIdsString = string.Join(",", SegmentOptions.OrderBy(item => item.Order).Where(item => item.Checked).Select(item => item.Id));
             _context.Attach(Book).State = EntityState.Modified;
 
             try
