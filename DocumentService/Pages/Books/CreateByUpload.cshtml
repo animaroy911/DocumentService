@@ -5,27 +5,34 @@
     ViewData["Title"] = "Create";
 }
 
-<div class="row">
-    <div class="col-12">
-        <form method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Book.Name" class="control-label"></label>
-                <input asp-for="Book.Name" class="form-control" />
-                <span asp-validation-for="Book.Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Book.UploadDocumentFile" class="control-label"></label>
-                <input asp-for="Book.UploadDocumentFile" type="file" class="form-control" style="height:auto" />
-                <span asp-validation-for="Book.UploadDocumentFile" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Book.Owner" class="control-label"></label>
-                <input value="@Globals.CURRENT_USER" disabled class="form-control" />
-                <span asp-validation-for="Book.Owner" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+<div class="row" style="height:100%;">
+    <div class="col-12" style="height:100%;">
+        <form method="post" style="height:100%;" enctype="multipart/form-data">
+            <div class="card" style="height:100%;border-radius:0px;">
+                <div class="card-header" style="height:49px;"><b>ADD NEW BOOK BY UPLOAD</b></div>
+                <div class="card-body" style="height:100%;">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Book.Name" class="control-label"></label>
+                        <input asp-for="Book.Name" class="form-control" />
+                        <span asp-validation-for="Book.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Book.UploadDocumentFile" class="control-label"></label>
+                        <input asp-for="Book.UploadDocumentFile" type="file" class="form-control" style="height:auto" />
+                        <span asp-validation-for="Book.UploadDocumentFile" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Book.Owner" class="control-label"></label>
+                        <input value="@Globals.CURRENT_USER" disabled class="form-control" />
+                        <span asp-validation-for="Book.Owner" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="card-footer" style="height:63px;">
+                    <div class="float-right">
+                        <input type="submit" value="Create" class="btn btn-primary btn-sm" />
+                    </div>
+                </div>
             </div>
         </form>
     </div>
