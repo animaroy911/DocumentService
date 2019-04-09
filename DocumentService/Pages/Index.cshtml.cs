@@ -14,6 +14,13 @@ namespace DocumentService.Pages
 
         }
 
+        private readonly DocumentService.Data.ApplicationDbContext _context;
+
+        public IndexModel(DocumentService.Data.ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         public IActionResult OnPostCrothall()
         {
             if (!ModelState.IsValid)
@@ -51,6 +58,32 @@ namespace DocumentService.Pages
                 return Page();
             }
             Globals.CURRENT_USER = "Hospital C";
+            return RedirectToPage("./Index");
+        }
+
+        public async Task<IActionResult> OnPostDeleteAllSegmentsAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            _context.Segment.RemoveRange(_context.Segment);
+            await _context.SaveChangesAsync();
+
+            return RedirectToPage("./Index");
+        }
+
+        public async Task<IActionResult> OnPostDeleteAllBooksAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            _context.Book.RemoveRange(_context.Book);
+            await _context.SaveChangesAsync();
+
             return RedirectToPage("./Index");
         }
     }

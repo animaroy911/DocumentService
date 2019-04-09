@@ -4,21 +4,30 @@
     ViewData["Title"] = "Home page";
 }
 
-<h1>You are now logged in as @Globals.CURRENT_USER</h1>
-
-<form method="post">
-    <div class="row">
-        <div class="form-group">
-            <input type="submit" value="Crothall" asp-page-handler="Crothall" class="btn btn-primary" />
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Hospital A" asp-page-handler="HospitalA" class="btn btn-primary" />
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Hospital B" asp-page-handler="HospitalB" class="btn btn-primary" />
-        </div>
-        <div class="form-group">
-            <input type="submit" value="Hospital C" asp-page-handler="HospitalC" class="btn btn-primary" />
-        </div>
+<div class="row" style="height:100%;">
+    <div class="col-12" style="height:100%;">
+        <form method="post" style="height:100%;">
+            <div class="card" style="height:100%;border-radius:0px;">
+                <div class="card-header" style="height:49px;"><b>DEVELOPER CONTROL PANEL</b></div>
+                <div class="card-body" style="height:100%;">
+                    <p class="card-text">
+                        You are now logged in as <b>@Globals.CURRENT_USER</b><br /><br />
+                        Use the following buttons to switch user :
+                        <input type="submit" value="Crothall" asp-page-handler="Crothall" class="btn btn-link" style="padding:0; margin-top: -3px;" /> /
+                        <input type="submit" value="Hospital A" asp-page-handler="HospitalA" class="btn btn-link" style="padding:0; margin-top: -3px;" /> /
+                        <input type="submit" value="Hospital B" asp-page-handler="HospitalB" class="btn btn-link" style="padding:0; margin-top: -3px;" /> /
+                        <input type="submit" value="Hospital C" asp-page-handler="HospitalC" class="btn btn-link" style="padding:0; margin-top: -3px;" /><br />
+                        Use the following buttons to delete testing data :
+                        <input type="submit" value="Delete All Books" asp-page-handler="DeleteAllBooks" class="btn btn-link" style="padding:0; margin-top: -3px;" /> /
+                        <input type="submit" value="Delete All Segments" asp-page-handler="DeleteAllSegments" class="btn btn-link" style="padding:0; margin-top: -3px;" />
+                    </p>
+                </div>
+                <div class="card-footer" style="height:63px;">
+                    <div class="float-right">
+                        <input type="submit" value="Create" class="btn btn-primary btn-sm" />
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
-</form>
+</div>

@@ -15,14 +15,13 @@
                 <a class="nav-link" data-toggle="tab" href="#others-segments" role="tab" aria-controls="profile" aria-selected="false" style="border-radius:0px; padding:10px 20px; font-weight:bold;">OTHER'S SEGMENTS</a>
             </li>
         </ul>
+        <div class="float-right" style="margin: -26px -12px -10px 0;">
+            <a asp-page="Create" class="btn btn-success btn-sm">Add New Segment</a>
+        </div>
     </div>
     <div class="card-body" style="overflow-y:scroll;">
         <div class="tab-content">
             <div class="tab-pane fade show active" id="my-segments" role="tabpanel">
-                <form method="post">
-                    <input type="submit" value="Delete All Segments" class="btn btn-block btn-danger" style="margin-bottom:5px;" />
-                </form>
-                <a asp-page="Create" class="btn btn-block btn-success" style="margin-bottom:30px;">Add New Segment</a>
                 @foreach (var item in Model.Segment.Where(s=>s.Owner == Globals.CURRENT_USER))
                 {
                 <div class="card" style="margin-bottom: 15px;">
