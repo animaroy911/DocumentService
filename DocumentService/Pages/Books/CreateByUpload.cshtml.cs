@@ -63,7 +63,7 @@ namespace DocumentService.Pages.Books
                 Segment currentSegment = null;
                 foreach (HtmlNode node in root.ChildNodes)
                 {
-                    if (node.Name == "div")
+                    if (node.Name == "div" || node.Name.StartsWith("h"))
                     {
                         if (currentSegment != null)
                         {
@@ -71,7 +71,7 @@ namespace DocumentService.Pages.Books
                         }
                         currentSegment = new Segment();
                     }
-                    if (node.Name == "div")
+                    if (node.Name == "div" || node.Name.StartsWith("h"))
                     {
                         if (currentSegment != null && !string.IsNullOrWhiteSpace(HttpUtility.HtmlDecode(node.InnerText)))
                         {
@@ -86,7 +86,10 @@ namespace DocumentService.Pages.Books
                         }
                     }
                 }
-
+                if (currentSegment != null)
+                {
+                    segments.Add(currentSegment);
+                }
                 foreach (Segment segment in segments)
                 {
                     segment.Owner = Globals.CURRENT_USER;
