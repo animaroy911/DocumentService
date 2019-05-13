@@ -32,6 +32,7 @@ namespace DocumentService.Pages.Books
             {
                 SegmentOptions[i].Order = i;
                 SegmentOptions[i].Checked = false;
+                SegmentOptions[i].Content = "";
             }
             return Page();
         }

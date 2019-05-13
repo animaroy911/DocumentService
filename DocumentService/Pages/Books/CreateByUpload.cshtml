@@ -23,6 +23,11 @@
                         <span asp-validation-for="Book.UploadDocumentFile" class="text-danger"></span>
                     </div>
                     <div class="form-group">
+                        <label asp-for="Book.UploadDocumentFolder" class="control-label"></label>
+                        <input asp-for="Book.UploadDocumentFolder" type="file" class="form-control" style="height:auto" webkitdirectory mozdirectory />
+                        <span asp-validation-for="Book.UploadDocumentFolder" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
                         <label asp-for="Book.Owner" class="control-label"></label>
                         <input value="@Globals.CURRENT_USER" disabled class="form-control" />
                         <span asp-validation-for="Book.Owner" class="text-danger"></span>

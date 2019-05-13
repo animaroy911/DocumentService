@@ -24,6 +24,7 @@ namespace DocumentService.Pages.Books
         public async Task OnGetAsync()
         {
             Book = await _context.Book.ToListAsync();
+            List<Segment> allSegments = _context.Segment.ToList();
             foreach (Book book in Book)
             {
                 book.BookSegments = new List<Segment>();
@@ -33,9 +34,9 @@ namespace DocumentService.Pages.Books
                     int segmentId = 0;
                     if (int.TryParse(segmentIdString, out segmentId))
                     {
-                        if (_context.Segment.Any(m => m.Id == segmentId))
+                        if (allSegments.Any(m => m.Id == segmentId))
                         {
-                            book.BookSegments.Add(_context.Segment.First(m => m.Id == segmentId));
+                            book.BookSegments.Add(allSegments.First(m => m.Id == segmentId));
                         }
                         else
                         {

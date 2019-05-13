@@ -19,5 +19,7 @@ namespace DocumentService.Models
         public List<Segment> BookSegments { get; set; }
         [NotMapped]
         public IFormFile UploadDocumentFile { get; set; }
+        [NotMapped]
+        public List<IFormFile> UploadDocumentFolder { get; set; }
     }
 }
